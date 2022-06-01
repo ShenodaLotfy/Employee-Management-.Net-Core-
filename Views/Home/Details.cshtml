@@ -1,0 +1,73 @@
+﻿<!-- use _ViewImports to short the namespaces so we remove this long term namespace
+    NetCore_Model_View_Cortol_Created.ViewModels.HomeDetailsViewModel to HomeDetailsViewModel
+    -->
+
+@model HomeDetailsViewModel
+
+<!-- define location of the _Layout.cshtml that has <html> <body> tags to be used in this view  -->
+@{ 
+
+    ViewBag.Title = "Details";
+
+    var photoPath = "~/images/" + (Model.Employee.PhotoPath ?? "noname.jpg");
+
+}
+
+    <!-- retrive data coming from Home Controller and display it-->
+    <!-- Using  sign of(shift+2)  to write c# code -->
+
+     @*using ViewData to get the object , missing @ before each viewbag*@
+    <!--var employee = ViewData["EmployeeFromController"]
+        as NetCore_Model_View_Cortol_Created.Models.Employees; // we got the employee from controller-->
+
+    
+
+    @*using ViewData to view data , missing @ before each viewbag*@
+    <!--<div>Name is :  employee.name </div>
+    <div>Salary is : employee.salary </div>
+    <div>Email is : employee.email</div>-->
+
+   
+    @*using ViewBag to view data missing @ before each viewbag*@
+    <!--<div> ViewBag.EmployeeFromController.name </div>-->   @* EmployeeFromController is the key that data sent with*@
+    <!--<div>  ViewBag.EmployeeFromController.salary</div>
+    <div>  ViewBag.EmployeeFromController.email</div>-->
+    
+    <!--
+    @* using @Model to get data from controller after using @model ModelName*@
+    <h3> Model.PageTitle </h3>
+    <div>Name is :  Model.Employee.name </div>
+    
+    <div>Email is :Model.Employee.email</div>
+        -->
+
+
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" asp-append-version="true"  src="@photoPath"/>
+                
+                <h4>Employee ID : @Model.Employee.id</h4>
+                <h4>Email : @Model.Employee.email</h4>
+                
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
+                <a asp-action="edit" asp-controller="Home" asp-route-id="@Model.Employee.id" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- define script section to be available in _Layout.cshtml -->
+@section Scripts{ 
+    <script src="~/js/CustomScript.js"></script>
+}
